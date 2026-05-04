@@ -44,18 +44,18 @@ type ProxyHandler struct {
 	fakeSNI       string
 }
 
-func NewProxyHandler(d dialer.ContextDialer, logger *clog.CondLogger, fakeSNI string) *ProxyHandler {
+func NewProxyHandler(dialer dialer.ContextDialer, logger *clog.CondLogger, fakeSNI string) *ProxyHandler {
 	httptransport := &http.Transport{
 		MaxIdleConns:          TRANSPORT_MAX_IDLE_CONNS,
 		MaxIdleConnsPerHost:   TRANSPORT_MAX_IDLE_CONNS_PER_HOST,
 		IdleConnTimeout:       TRANSPORT_IDLE_CONN_TIMEOUT,
 		TLSHandshakeTimeout:   10 * time.Second,
 		ExpectContinueTimeout: 1 * time.Second,
-		DialContext:           d.DialContext,
+		DialContext:           dialer.DialContext,
 	}
 	return &ProxyHandler{
 		logger:        logger,
-		dialer:        d,
+		dialer:        dialer,
 		httptransport: httptransport,
 		fakeSNI:       fakeSNI,
 	}
