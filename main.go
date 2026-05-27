@@ -212,7 +212,7 @@ func parse_args() *CLIArgs {
 	flag.StringVar(&args.apiProxy, "api-proxy", "", "additional proxy server used to access SurfEasy API")
 	flag.StringVar(&args.apiProxyFile, "api-proxy-file", "", "path to text file with candidate proxy servers for SurfEasy API access, one per line; proxies are tried in order until init/discover succeeds")
 	flag.StringVar(&args.apiProxyListURL, "api-proxy-list-url", "", "URL of a text file with candidate proxy servers for SurfEasy API access; falls back to -api-proxy-file if download fails")
-	flag.IntVar(&args.apiProxyParallel, "api-proxy-parallel", 5, "number of API proxy candidates tested in parallel when -api-proxy-file is used")
+	flag.IntVar(&args.apiProxyParallel, "api-proxy-parallel", 15, "number of API proxy candidates tested in parallel when -api-proxy-file is used")
 	flag.Var(args.bootstrapDNS, "bootstrap-dns",
 		"comma-separated list of DNS/DoH/DoT resolvers for initial discovery of SurfEasy API address. "+
 			"Supported schemes are: dns://, https://, tls://, tcp://. "+
