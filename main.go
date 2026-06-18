@@ -1948,7 +1948,11 @@ func readConfig(filename string) error {
 	return nil
 }
 
+var AppVersion = "dev"
 func version() string {
+    if AppVersion != "dev" {
+        return AppVersion
+    }
 	bi, ok := debug.ReadBuildInfo()
 	if !ok {
 		return "unknown"
