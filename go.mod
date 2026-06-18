@@ -1,8 +1,8 @@
 module github.com/Alexey71/opera-proxy
 
-go 1.25.0
+go 1.25.7
 
-toolchain go1.26.4
+toolchain go1.25.7
 
 require (
 	github.com/Alexey71/go-http-digest-auth-client v1.1.3
