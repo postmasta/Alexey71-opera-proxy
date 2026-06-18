@@ -1,8 +1,8 @@
 PROGNAME = opera-proxy
 OUTSUFFIX = bin/$(PROGNAME)
-BUILDOPTS = -a -tags netgo -trimpath -asmflags -trimpath
-LDFLAGS = -ldflags '-s -w -extldflags "-static"'
-LDFLAGS_NATIVE = -ldflags '-s -w'
+BUILDOPTS = -mod=mod -a -tags netgo -trimpath -asmflags -trimpath -buildvcs=false
+LDFLAGS = -ldflags '-s -w -buildid= -extldflags "-static" -X main.AppVersion=$(VERSION)'
+LDFLAGS_NATIVE = -ldflags '-s -w -buildid=' 
 
 NDK_CC_ARM = $(abspath ../../ndk-toolchain-arm/bin/arm-linux-androideabi-gcc)
 NDK_CC_ARM64 = $(abspath ../../ndk-toolchain-arm64/bin/aarch64-linux-android21-clang)
@@ -20,8 +20,7 @@ all: bin-linux-amd64 bin-linux-386 bin-linux-arm bin-linux-arm64 \
 	bin-darwin-amd64 bin-darwin-arm64 \
 	bin-windows-amd64 bin-windows-386 bin-windows-arm64
 
-allplus: all \
-	bin-android-arm bin-android-arm64
+allwin: bin-windows-amd64 bin-windows-386
 
 bin-native: $(OUTSUFFIX)
 bin-linux-amd64: $(OUTSUFFIX).linux-amd64
